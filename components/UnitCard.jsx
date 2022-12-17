@@ -14,7 +14,7 @@ function UnitCard(props) {
             <h1 className="text-3xl font-bold underline">
               ----- {profile.name}
             </h1>
-            <table key={i} class="table-auto">
+            <table key={i} className="table-auto">
               <thead>
                 <tr>
                   {profile.stats.map((stat, i) => {
