@@ -21,7 +21,7 @@ function Header(props) {
             />
           </div>
 
-          <div>ok</div>
+          <div>~</div>
         </div>
       </nav>
     </div>

@@ -1,6 +1,6 @@
 import React from "react";
 
-function ProfileRow(props) {
+function WeaponRow(props) {
   const oneclass = "bg-gray-50 dark:bg-gray-800";
 
   return (
@@ -8,7 +8,7 @@ function ProfileRow(props) {
       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase dark:text-gray-400">
           <tr>
-            <th>Unit</th>
+            <th>Weapon</th>
             {props.allProfiles[0].stats.map((stat, i) => {
               return (
                 <th
@@ -50,4 +50,4 @@ function ProfileRow(props) {
   );
 }
 
-export default ProfileRow;
+export default WeaponRow;
