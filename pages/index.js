@@ -13,7 +13,6 @@ export default function Home() {
   const [forceJSON, setForceJSON] = useState();
 
   const changeHandler = (event) => {
-    console.log("handler");
     setSelectedFile(event.target.files[0]);
 
     // let blob = file.fileBlob;
@@ -30,7 +29,7 @@ export default function Home() {
 
   return (
     <div className="">
-      <Head>
+      <Head className="">
         <title>HeresyScribe</title>
         <meta
           name="description"
@@ -38,20 +37,23 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header changeHandler={changeHandler}></Header>
-
       <div>
-        {isFilePicked ? (
-          <>
-            <div>
-              {forceJSON[0].units.map((model, i) => {
-                return <UnitCard model={model} key={i} />;
-              })}
-            </div>
-          </>
-        ) : (
-          <NoFile />
-        )}
+        <Header className="hide-print" changeHandler={changeHandler}></Header>
+
+        <div>
+          {isFilePicked ? (
+            <>
+              <div>
+                {/* there are {forceJSON[0].units.length} */}
+                {forceJSON[0].units.map((model, i) => {
+                  return <UnitCard model={model} key={i} />;
+                })}
+              </div>
+            </>
+          ) : (
+            <NoFile />
+          )}
+        </div>
       </div>
     </div>
   );

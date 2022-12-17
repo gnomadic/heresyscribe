@@ -33,9 +33,9 @@ function flattenJSON(fileData) {
   let flatForces = [];
 
   for (const force of fileData) {
-    console.log("Force");
-    console.log("well " + Object.keys(force));
-    console.log(JSON.stringify(force.models, null, 2));
+    // console.log("Force");
+    // console.log("well " + Object.keys(force));
+    // console.log(JSON.stringify(force.models, null, 2));
     let flatForce = {
       displayName: force.displayName,
       globalRules: [],
@@ -93,6 +93,11 @@ function flattenJSON(fileData) {
         //      }
         // }
         if (profile.stats[0].name === "Unit Type") {
+          //also remove unit type, it's long and not really useful?
+          profile.stats = profile.stats.filter(
+            (item) => item.name !== "Unit Type"
+          );
+
           flatUnit.modelProfiles.push(profile);
         } else if (profile.stats.length === 4) {
           flatUnit.weaponProfiles.push(profile);
