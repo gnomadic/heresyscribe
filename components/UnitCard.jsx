@@ -9,10 +9,10 @@ function UnitCard(props) {
     <div className="mb-10 mx-10">
       <div className="flex justify-center">
         <div className="block rounded-lg shadow-lg bg-white  text-center">
-          <div className="py-3 px-6 border-b border-gray-300 text-gray-900 ">
+          <div className="py-1 px-6 border-b border-gray-300 text-gray-900 uppercase text-lg">
             {props.model.displayName}
           </div>
-          <div className="p-6">
+          <div className="">
             <div className="text-gray-900 text-xl font-medium mb-2">
               <ProfileRow allProfiles={props.model.modelProfiles} />
             </div>

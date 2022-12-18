@@ -62,6 +62,12 @@ function flattenJSON(fileData) {
       flattenRules(unit, flatUnit);
       unit.model?.forEach((model) => {
         flattenRules(model, flatUnit);
+        model.upgrades?.forEach((upgrade) => {
+          flattenRules(upgrade, flatUnit);
+          upgrade.upgrades?.forEach((up) => {
+            flattenRules(up, flatUnit);
+          });
+        });
       });
       // end rules
 
@@ -75,6 +81,12 @@ function flattenJSON(fileData) {
       flattenProfiles(unit, flatUnit);
       unit.model?.forEach((model) => {
         flattenProfiles(model, flatUnit);
+        model.upgrades?.forEach((upgrade) => {
+          flattenProfiles(upgrade, flatUnit);
+          upgrade.upgrades?.forEach((up) => {
+            flattenProfiles(up, flatUnit);
+          });
+        });
       });
       for (const model of unit.model) {
         model.upgrades?.forEach((upgrade) => {
@@ -82,6 +94,47 @@ function flattenJSON(fileData) {
         });
       }
       //end profiles
+
+      // let profileSet = new Set();
+      // flatUnit.allProfiles.forEach((profile) => {
+      //   profileSet.add(profile.name);
+      // });
+
+      //remove dupe profiles
+      flatUnit.allProfiles = flatUnit.allProfiles.filter((value, index) => {
+        const _value = JSON.stringify(value);
+        return (
+          index ===
+          flatUnit.allProfiles.findIndex((obj) => {
+            return JSON.stringify(obj) === _value;
+          })
+        );
+      });
+
+      //remove dupe rules
+      flatUnit.rules = flatUnit.rules.filter((value, index) => {
+        const _value = JSON.stringify(value);
+        return (
+          index ===
+          flatUnit.rules.findIndex((obj) => {
+            return JSON.stringify(obj) === _value;
+          })
+        );
+      });
+
+      // console.log("profileSet", profileSet);
+
+      // flatUnit.allProfiles =
+      // const names = flatUnit.allProfiles.map((o) => o.name);
+      // console.log("names", names);
+      // const filtered = flatUnit.allProfiles.filter(
+      //   ({ id }, index) => !names.includes(id, index + 1)
+      // );
+      // console.log("filtered", filtered);
+
+      // const filtered = flatUnit.allProfiles.filter(
+      //   ({ id }, index) => !ids.includes(id, index + 1)
+      // );
 
       //split up profiles based arbitrary things
       flatUnit.allProfiles.forEach((profile) => {

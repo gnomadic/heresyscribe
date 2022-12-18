@@ -9,13 +9,15 @@ function WargearRow(props) {
       <table className="w-full text-sm text-center text-gray-400">
         <thead className="text-xs uppercase bg-gray-700 text-gray-400">
           <tr>
-            <th className="py-3 px-6">WarGear</th>
+            <th className="text-normal px-6">WarGear</th>
             {props.allProfiles[0].stats.map((stat, i) => {
               return (
                 <th
                   scope="col"
                   key={i}
-                  className={"py-3 px-6 " + (i % 2 === 0 ? darkclass : "")}
+                  className={
+                    "px-6 text-normal" + (i % 2 === 0 ? darkclass : "")
+                  }
                 >
                   {stat.name}
                 </th>
@@ -33,7 +35,8 @@ function WargearRow(props) {
                     <th
                       scope="row"
                       className={
-                        "text-left py-3 px-6 " + (i % 2 === 0 ? lightClass : "")
+                        "text-left text-xs px-6 " +
+                        (i % 2 === 0 ? lightClass : "")
                       }
                       key={i}
                     >

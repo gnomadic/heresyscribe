@@ -9,13 +9,13 @@ function ProfileRow(props) {
       <table className="w-full text-sm text-center text-gray-400">
         <thead className="text-xs uppercase bg-gray-700 text-gray-400">
           <tr>
-            <th className="py-3 px-6">Unit</th>
+            <th className="text-base px-6">Unit</th>
             {props.allProfiles[0].stats.map((stat, i) => {
               return (
                 <th
                   scope="col"
                   key={i}
-                  className={"py-3 px-6 " + (i % 2 === 0 ? darkclass : "")}
+                  className={" px-6 text-base" + (i % 2 === 0 ? darkclass : "")}
                 >
                   {stat.name}
                 </th>

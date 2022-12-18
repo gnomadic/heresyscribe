@@ -9,14 +9,15 @@ function WeaponRow(props) {
       <table className="w-full text-sm text-left text-gray-400">
         <thead className="text-xs uppercase bg-gray-700 text-gray-400">
           <tr>
-            <th className="py-3 px-6">Weapon</th>
+            <th className="px-6 text-base">Weapon</th>
             {props.allProfiles[0].stats.map((stat, i) => {
               return (
                 <th
                   scope="col"
                   key={i}
                   className={
-                    "text-center py-3 px-6 " + (i % 2 === 0 ? darkclass : "")
+                    "text-center px-6 text-base " +
+                    (i % 2 === 0 ? darkclass : "")
                   }
                 >
                   {stat.name}
@@ -29,13 +30,13 @@ function WeaponRow(props) {
           {props.allProfiles.map((profile, i) => {
             return (
               <tr key={i} className="border-t border-gray-700">
-                <th className="py-3 px-6">{profile.name}</th>
+                <th className="px-6">{profile.name}</th>
                 {profile.stats.map((stat, i) => {
                   return (
                     <th
                       scope="row"
                       className={
-                        "py-3 px-6 " +
+                        "px-6 " +
                         (i % 2 === 0 ? lightClass : "") +
                         (stat.name === "Type" ? " text-left " : " text-center ")
                       }
