@@ -20,10 +20,10 @@ function Header(props) {
         <div>
           {props.isFilePicked ? (
             <button
-              className="block p-2 w-full text-sm text-gray-900 border  rounded-lg cursor-pointer  dark:text-gray-400 focus:outline-none bg-gray-700 border-gray-600"
+              className="block p-2 w-full text-sm text-gray-200 border rounded-lg cursor-pointer focus:outline-none bg-gray-500 border-gray-600"
               onClick={props.togglePrintMode}
             >
-              print mode
+              Print Mode
             </button>
           ) : (
             <> </>

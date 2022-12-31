@@ -54,6 +54,7 @@ export default function Home() {
               <div>
                 {/* there are {forceJSON[0].units.length} */}
                 {forceJSON[0].units.map((model, i) => {
+                  model.checked = true;
                   return (
                     <UnitCard
                       model={model}
