@@ -14,7 +14,6 @@ function WeaponRow(props) {
       temp[i] = true;
     });
     setShowRow(temp);
-    console.log(temp);
   }, [props.allProfiles]);
 
   return (

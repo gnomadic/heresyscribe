@@ -4,10 +4,9 @@ import { useState } from "react";
 import Header from "../components/Header";
 import NoFile from "../components/NoFile";
 import UnitCard from "../components/UnitCard";
-import { prepXML } from "../utils/xml2";
+import { prepXML, unarchive } from "../utils/xml2";
 
 export default function Home() {
-  const [selectedFile, setSelectedFile] = useState();
   const [isFilePicked, setIsFilePicked] = useState(false);
   const [forceJSON, setForceJSON] = useState();
   const [printMode, setPrintMode] = useState(false);
@@ -17,18 +16,28 @@ export default function Home() {
   };
 
   const changeHandler = (event) => {
-    setSelectedFile(event.target.files[0]);
+    setIsFilePicked(false);
+    let filename = event.target.files[0].name;
 
-    // let blob = file.fileBlob;
-    var reader = new FileReader();
-    reader.addEventListener("loadend", function () {
-      // console.log(reader.result); // will print out file content
-      prepXML(reader.result, (data) => {
-        setForceJSON(data);
-        setIsFilePicked(true);
+    let fileExtension = filename.split(".").pop().toLowerCase();
+
+    if (fileExtension === "rosz") {
+      unarchive(event.target.files[0], (data) => {
+        prepXML(data, (res) => {
+          setForceJSON(res);
+          setIsFilePicked(true);
+        });
       });
-    });
-    reader.readAsText(event.target.files[0]);
+    } else {
+      var reader = new FileReader();
+      reader.addEventListener("loadend", function () {
+        prepXML(reader.result, (data) => {
+          setForceJSON(data);
+          setIsFilePicked(true);
+        });
+      });
+      reader.readAsText(event.target.files[0]);
+    }
   };
 
   return (

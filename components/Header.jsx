@@ -10,9 +10,10 @@ function Header(props) {
           </label>
           <input
             className="block w-full text-sm text-gray-900 border rounded-lg cursor-pointer  dark:text-gray-400 focus:outline-none bg-gray-700 border-gray-600 dark:placeholder-gray-400"
-            id="file_input"
+            id="file"
             type="file"
-            accept=".ros"
+            name="file"
+            accept=".ros, .rosz"
             onChange={props.changeHandler}
           />
         </div>

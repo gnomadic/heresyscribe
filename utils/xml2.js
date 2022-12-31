@@ -3,31 +3,32 @@ var parseString = require("xml2js").parseString;
 // var fs = require("fs");
 // const { parse } = require("path");
 // const { json } = require("stream/consumers");
+var JSZip = require("jszip");
+
+export async function unarchive(f, done) {
+  JSZip.loadAsync(f).then(
+    function (zip) {
+      zip.forEach(async function (relativePath, zipEntry) {
+        Object.keys(zip.files).forEach(function (filename) {
+          zip.files[filename].async("string").then(function (fileData) {
+            done(fileData);
+          });
+        });
+      });
+    },
+    function (e) {
+      console.log(f.name + ": " + e.message);
+    }
+  );
+}
 
 export function prepXML(fileData, done) {
   loadXML(fileData, (json) => {
-    // console.log(JSON.stringify(json));
     let flat = flattenJSON(json);
 
     done(flat);
-    // console.log(JSON.stringify(flat, null, 2));
   });
 }
-
-// fs.readFile(__dirname + "/rosters/2k-IF.ros", function (err, data) {
-//   if (err) {
-//     throw err;
-//   }
-//   var fileData = data.toString();
-//   loadXML(fileData, (json) => {
-//     // console.log(JSON.stringify(json));
-//     let flat = flattenJSON(json);
-
-//     // console.log(JSON.stringify(json.units, null, 2));
-
-//     console.log(JSON.stringify(flat, null, 2));
-//   });
-// });
 
 function flattenJSON(fileData) {
   let flatForces = [];
