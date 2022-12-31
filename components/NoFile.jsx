@@ -17,8 +17,9 @@ function NoFile(props) {
               BattleScribe, but for the age of heresy.
             </h2>
             <p className="mb-1 text-xl text-gray-200">
-              This only works for uncompressed ros files - save your
-              battlescribe roster as one!
+              This should work with both compressed ROSZ files and uncompressed
+              ROS fies - if you get an error, try uncompressed (and let me
+              know)!
             </p>
             <Image src={ros} alt="ros" />
 
