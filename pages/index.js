@@ -4,13 +4,17 @@ import { useState } from "react";
 import Header from "../components/Header";
 import NoFile from "../components/NoFile";
 import UnitCard from "../components/UnitCard";
-import styles from "../styles/Home.module.css";
 import { prepXML } from "../utils/xml2";
 
 export default function Home() {
   const [selectedFile, setSelectedFile] = useState();
   const [isFilePicked, setIsFilePicked] = useState(false);
   const [forceJSON, setForceJSON] = useState();
+  const [printMode, setPrintMode] = useState(false);
+
+  const togglePrintMode = () => {
+    setPrintMode(!printMode);
+  };
 
   const changeHandler = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -38,7 +42,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        <Header className="hide-print" changeHandler={changeHandler}></Header>
+        <Header
+          changeHandler={changeHandler}
+          isFilePicked={isFilePicked}
+          togglePrintMode={togglePrintMode}
+        ></Header>
 
         <div>
           {isFilePicked ? (
@@ -46,7 +54,14 @@ export default function Home() {
               <div>
                 {/* there are {forceJSON[0].units.length} */}
                 {forceJSON[0].units.map((model, i) => {
-                  return <UnitCard model={model} key={i} />;
+                  return (
+                    <UnitCard
+                      model={model}
+                      key={i}
+                      checked={true}
+                      printMode={printMode}
+                    />
+                  );
                 })}
               </div>
             </>

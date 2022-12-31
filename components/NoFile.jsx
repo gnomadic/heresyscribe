@@ -20,13 +20,6 @@ function NoFile(props) {
               battlescribe roster as one!
             </p>
             <Image src={ros} alt="ros" />
-
-            {/* <a
-            class="inline-block px-12 py-4 text-lg bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-full transition duration-200"
-            href="#"
-          >
-            Start again
-          </a> */}
           </div>
         </div>
       </div>

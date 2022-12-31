@@ -9,6 +9,13 @@ function ProfileRow(props) {
       <table className="w-full text-sm text-center text-gray-400">
         <thead className="text-xs uppercase bg-gray-700 text-gray-400">
           <tr>
+            {props.printMode ? (
+              <th className="text-base px-6 printbox">
+                <input type="checkbox" className="default:ring-2" />
+              </th>
+            ) : (
+              <></>
+            )}
             <th className="text-base px-6">Unit</th>
             {props.allProfiles[0].stats.map((stat, i) => {
               return (
@@ -27,7 +34,16 @@ function ProfileRow(props) {
           {props.allProfiles.map((profile, i) => {
             return (
               <tr key={i} className="border-t border-gray-700">
+                {props.printMode ? (
+                  <th className="text-base px-6 printbox">
+                    <input type="checkbox" className="default:ring-2" />
+                  </th>
+                ) : (
+                  <></>
+                )}
+
                 <th>{profile.name}</th>
+
                 {profile.stats.map((stat, i) => {
                   return (
                     <th

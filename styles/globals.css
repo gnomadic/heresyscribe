@@ -19,12 +19,14 @@ a {
 * {
   box-sizing: border-box;
 }
-
+ 
 @media print{
-  hide-print{
-    display:none;
+  .noprint{
+    visibility: hidden;
   }
-}
+} 
+
+
 
 @media (prefers-color-scheme: dark) {
   html {
