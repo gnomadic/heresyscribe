@@ -23,9 +23,9 @@ function NoFile(props) {
             <Image src={ros} alt="ros" />
 
             <p className="mb-1 mt-14 text-xl text-gray-200">
-              "Print Mode" let's you hide rows and cards you don't want to print
-              out (or save as pdf). Uncheck some boxes and hit ctrl + p to try
-              it out
+              &quot;Print Mode&quot; let&apos;s you hide rows and cards you
+              don&apos;t want to print out (or save as pdf). Uncheck some boxes
+              and hit ctrl + p to try it out
             </p>
             <Image src={printmode} alt="ros" />
           </div>
