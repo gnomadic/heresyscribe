@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ProfileRow from "./ProfileRow";
 import RuleRow from "./RuleRow";
+import VehicleRow from "./VehicleRow";
 import WargearRow from "./WargearRow";
 import WeaponRow from "./WeaponRow";
 
@@ -32,12 +33,27 @@ function UnitCard(props) {
             {model.displayName}
           </div>
           <div className="">
-            <div className="text-gray-900 text-xl font-medium mb-2">
-              <ProfileRow
-                allProfiles={model.modelProfiles}
-                printMode={props.printMode}
-              />
-            </div>
+            {model.modelProfiles.length > 0 ? (
+              <div className="text-gray-900 text-xl font-medium mb-2">
+                <ProfileRow
+                  allProfiles={model.modelProfiles}
+                  printMode={props.printMode}
+                />
+              </div>
+            ) : (
+              <></>
+            )}
+
+            {model.vehicleProfiles.length > 0 ? (
+              <div className="text-gray-900 text-xl font-medium mb-2">
+                <VehicleRow
+                  allProfiles={model.vehicleProfiles}
+                  printMode={props.printMode}
+                />
+              </div>
+            ) : (
+              <></>
+            )}
 
             <div className="text-gray-900 text-xl font-medium mb-2">
               <WeaponRow

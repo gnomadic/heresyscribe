@@ -1,3 +1,5 @@
+import { parse } from "postcss";
+
 var parseString = require("xml2js").parseString;
 // const { profileEnd } = require("console");
 // var fs = require("fs");
@@ -50,6 +52,7 @@ function flattenJSON(fileData) {
         allProfiles: [],
         weaponProfiles: [],
         modelProfiles: [],
+        vehicleProfiles: [],
         wargearProfiles: [],
       };
 
@@ -112,6 +115,16 @@ function flattenJSON(fileData) {
         );
       });
 
+      // set stat length on each profile
+      flatUnit.allProfiles.forEach((profile) => {
+        profile.statsLength = profile.stats.length;
+      });
+
+      // console.log(
+      //   "flatUnit.allProfiles length",
+      //   flatUnit.allProfiles[0].statsLength
+      // );
+
       //remove dupe rules
       flatUnit.rules = flatUnit.rules.filter((value, index) => {
         const _value = JSON.stringify(value);
@@ -152,7 +165,12 @@ function flattenJSON(fileData) {
             (item) => item.name !== "Unit Type"
           );
 
-          flatUnit.modelProfiles.push(profile);
+          if (profile.stats.length === 8) {
+            console.log("vehicle profile", profile);
+            flatUnit.vehicleProfiles.push(profile);
+          } else {
+            flatUnit.modelProfiles.push(profile);
+          }
         } else if (profile.stats.length === 4) {
           flatUnit.weaponProfiles.push(profile);
         } else if (profile.stats.length === 1) {
@@ -203,6 +221,7 @@ function loadXML(fileData, done) {
   parseString(fileData, function (err, result) {
     var forces = result.roster.forces[0].force;
 
+    // console.log(JSON.stringify(forces, null, 2));
     //load up all forces
     forces.forEach((force) => {
       //each force has selections - which are upgrades, models, or units
@@ -397,6 +416,7 @@ function parseUnit(selection) {
         unit.model.push(parseModel(grandchild));
       } else if (grandchild.$.type === "unit") {
         // console.log("unit");
+        unit.model.push(parseModel(grandchild));
       } else if (grandchild.$.type === "wargear") {
         // console.log("wargear");
       }
