@@ -9,7 +9,7 @@ function UnitCard(props) {
   const [model, setModel] = useState(props.model);
 
   return (
-    <div className="mb-10 mx-10 flex">
+    <div className="flex mb-10 break-inside-avoid ">
       {props.printMode ? (
         <div className="px-5 pt-2 printbox noprint">
           <input
@@ -28,13 +28,13 @@ function UnitCard(props) {
       <div
         className={"flex justify-center" + (model.checked ? "" : " noprint")}
       >
-        <div className="block rounded-lg shadow-lg bg-white  text-center">
-          <div className="py-1 px-6 border-b border-gray-300 text-gray-900 uppercase text-lg">
+        <div className="block text-center bg-white rounded-lg shadow-lg">
+          <div className="px-6 py-1 text-lg text-gray-900 uppercase border-b border-gray-300">
             {model.displayName}
           </div>
           <div className="">
             {model.modelProfiles.length > 0 ? (
-              <div className="text-gray-900 text-xl font-medium mb-2">
+              <div className="mb-2 text-xl font-medium text-gray-900">
                 <ProfileRow
                   allProfiles={model.modelProfiles}
                   printMode={props.printMode}
@@ -45,7 +45,7 @@ function UnitCard(props) {
             )}
 
             {model.vehicleProfiles.length > 0 ? (
-              <div className="text-gray-900 text-xl font-medium mb-2">
+              <div className="mb-2 text-xl font-medium text-gray-900">
                 <VehicleRow
                   allProfiles={model.vehicleProfiles}
                   printMode={props.printMode}
@@ -55,13 +55,13 @@ function UnitCard(props) {
               <></>
             )}
 
-            <div className="text-gray-900 text-xl font-medium mb-2">
+            <div className="mb-2 text-xl font-medium text-gray-900">
               <WeaponRow
                 allProfiles={model.weaponProfiles}
                 printMode={props.printMode}
               />
             </div>
-            <div className="text-gray-900 text-xl font-medium mb-2">
+            <div className="mb-2 text-xl font-medium text-gray-900">
               <WargearRow
                 allProfiles={model.wargearProfiles}
                 printMode={props.printMode}
@@ -69,7 +69,7 @@ function UnitCard(props) {
             </div>
             {/* </div> */}
 
-            <div className="text-gray-900 text-xl font-medium mb-2">
+            <div className="mb-2 text-xl font-medium text-gray-900">
               <RuleRow allProfiles={model.rules} printMode={props.printMode} />
             </div>
           </div>
